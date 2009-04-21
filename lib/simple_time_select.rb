@@ -6,7 +6,7 @@ module ActionView::Helpers
         # Although this is a datetime select, we only care about the time.  Assume that the date will
         # be set by some other control, and the date represented here will be overriden
         
-        val_minutes = @datetime.kind_of?(Fixnum) ? @datetime.min + @datetime.hour*60 : @datetime
+        val_minutes = @datetime.kind_of?(Time) ? @datetime.min + @datetime.hour*60 : @datetime
 
         if @options[:minute_interval] 
           minute_interval = @options[:minute_interval] 
