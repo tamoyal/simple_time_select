@@ -1,12 +1,12 @@
 SIMPLE TIME SELECT PLUGIN
 
 Ever wanted a time select component with only one select field? This simple plugin 
-gives you that component and allows you to set minute intervals. So if you set your
+gives you that component and allows you to set minute intervals. If you set your
 minute interval to 15, you get options such as:
 "6:00 PM", "6:15 PM", "6:30 PM", etc.
 
-If no minute interval is specified, the control defaults to a 15 minute interval. And 
-as you can see from the sample values above, this control also implements an AM/PM time
+If no minute interval is specified, the control defaults to a 15 minute interval. 
+As you can see from the sample values above, this control also implements an AM/PM time
 format.
 
 Also note that this component is great if you ONLY want the time from a user. As is, the code
