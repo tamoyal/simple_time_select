@@ -1,0 +1,7 @@
+author: Tony Amoyal
+summary: Alternative to time_select provided by Rails.
+homepage: http://www.tonyamoyal.com
+plugin: http://github.com/tamoyal/simple_time_select/tree/master
+license: MIT
+version: 0.1a
+rails_version: 2.3.0+

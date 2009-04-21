@@ -1,0 +1,50 @@
+SIMPLE TIME SELECT PLUGIN
+
+Ever wanted a time select component with only one select field? This simple plugin 
+gives you that component and allows you to set minute intervals. So if you set your
+minute interval to 15, you get options such as:
+"6:00 PM", "6:15 PM", "6:30 PM", etc.
+
+If no minute interval is specified, the control defaults to a 15 minute interval. And 
+as you can see from the sample values above, this control also implements an AM/PM time
+format.
+
+Also note that this component is great if you ONLY want the time from a user. As is, the code
+prevents the hidden date fields associated with the time_select helper from being created. This means
+that a couple lines of code on the controller side are necessary to make this work. See USAGE for details.
+
+USAGE:
+
+To create the time select:
+
+  <%= time_select "event", "time", { :default => Time.now.change(:hour => 21), :simple_time_select => true, :minute_interval => 20 } %>
+
+When the time is submitted, you will have the value in params on the controller side as shown below:
+  
+  params[:event][:"time(i)"]
+
+Simply add these lines of code to your handler to play nicely with ActiveRecord:
+
+  params[:event][:time] = Time.parse(params[:event][:"time(i)"])
+  params[:event].delete(:"time(i)")
+
+Now the time will be correct, but the date will be the current date.  Here are a couple options for changing the date:
+
+1) Change the date in your controller (replace anything in < > with your own variables):
+  
+  params[:event][:time] = params[:event][:time].change(:year => <year_var>, :day => <day_var>, :month => <month_var>)
+  *I do not use this method, you may need to cast params[:event][:time] to a Time object before applying "change" to it.
+
+2) Change the date in an ActiveRecord callback in your model.  This is my preferred method:
+
+  def before_validation
+    # Assuming date is your Date variable
+    self.time = self.time.change(:year => date.year, :day => date.day, :month => date.month)
+  end
+
+Feel free to send any questions to tonyamoyal@gmail.com
+
+Author: Tony Amoyal <tonyamoyal@gmail.com>
+
+Homepage:
+http://github.com/tamoyal/simple_time_select/tree/master
