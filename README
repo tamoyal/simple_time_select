@@ -17,7 +17,9 @@ USAGE:
 
 To create the time select:
 
-  <%= time_select "event", "time", { :default => Time.now.change(:hour => 21), :simple_time_select => true, :minute_interval => 20 } %>
+  <%= time_select "event", "time", { :default => Time.now.change(:hour => 21), :simple_time_select => true, :minute_interval => 20, :time_separator => "" } %>
+
+Don't forget to include the time_separator option.  Otherwise you will get an extra colon outside of the select field.
 
 When the time is submitted, you will have the value in params on the controller side as shown below:
   
