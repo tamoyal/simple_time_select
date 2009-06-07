@@ -14,12 +14,19 @@ module ActionView::Helpers
           # Default is 15 minute intervals
           minute_interval = 15
         end
+        
+        # start_hour should be specified in military
+        # i.e. 0-23
+        start_hour = 0
+        if @options[:start_hour]
+          start_hour = @options[:start_hour] * 60
+        end
 
         if @options[:use_hidden] || @options[:discard_minute]
           build_hidden(:minute, val)
         else
           minute_options = []
-          0.upto(1439) do |minute|
+          start_hour.upto(1439) do |minute|
             if minute%minute_interval == 0
               ampm = minute < 720 ? ' AM' : ' PM'
               hour = minute/60

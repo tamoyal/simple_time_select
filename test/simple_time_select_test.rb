@@ -72,4 +72,9 @@ class SimpleTimeSelectTest < Test::Unit::TestCase
     actual = actual.strip_selected
     assert_equal(expected, actual.nstrip, "Usual time select with no options")
   end
+  
+  # TODO
+  def test_start_time
+    output = select_minute time, :simple_time_select => true, :start_hour => 4
+  end
 end
