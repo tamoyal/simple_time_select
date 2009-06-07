@@ -74,7 +74,10 @@ class SimpleTimeSelectTest < Test::Unit::TestCase
   end
   
   # TODO
-  def test_start_time
-    output = select_minute time, :simple_time_select => true, :start_hour => 4
+  def test_start_and_end_hour
+    time = Time.now.change(:hour => 21)
+    # 10 AM to 2 PM
+    output = select_minute time, :simple_time_select => true, :start_hour => 10, :end_hour => 14
+    puts "#{output.inspect}"
   end
 end

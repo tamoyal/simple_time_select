@@ -21,6 +21,12 @@ To create the time select:
 
 Don't forget to include the time_separator option.  Otherwise you will get an extra colon outside of the select field.
 
+Simple time select also takes a start_hour and end_hour option to be specified in military format (between 0-23).
+
+<%= time_select "event", "time", { :default => Time.now.change(:hour => 21), :simple_time_select => true, :minute_interval => 20, :time_separator => "", :start_hour => 10, :end_hour => 14 } %>
+
+The start hour behaves as you would expect but the end_hour may not.  If you specify the end_hour as 10, your time select will include 10:15, 10:30, 10:45.  So the end_hour sets the last hour that the time select will include. Email me if you don't like this.
+
 When the time is submitted, you will have the value in params on the controller side as shown below:
   
   params[:event][:"time(i)"]

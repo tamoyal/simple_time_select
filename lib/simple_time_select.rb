@@ -7,26 +7,34 @@ module ActionView::Helpers
         # be set by some other control, and the date represented here will be overriden
         
         val_minutes = @datetime.kind_of?(Time) ? @datetime.min + @datetime.hour*60 : @datetime
-
+        
+        @options[:time_separator] = ""
+        
+        # Default is 15 minute intervals
+        minute_interval = 15
         if @options[:minute_interval] 
           minute_interval = @options[:minute_interval] 
-        else
-          # Default is 15 minute intervals
-          minute_interval = 15
-        end
-        
-        # start_hour should be specified in military
-        # i.e. 0-23
-        start_hour = 0
-        if @options[:start_hour]
-          start_hour = @options[:start_hour] * 60
         end
 
+        start_minute = 0
+        # @options[:start_hour] should be specified in military
+        # i.e. 0-23
+        if @options[:start_hour]
+          start_minute = @options[:start_hour] * 60
+        end
+        
+        end_minute = 1439
+        # @options[:end_hour] should be specified in military
+        # i.e. 0-23
+        if @options[:end_hour]
+          end_minute = ( @options[:end_hour] + 1 ) * 60 - 1  
+        end
+        
         if @options[:use_hidden] || @options[:discard_minute]
           build_hidden(:minute, val)
         else
           minute_options = []
-          start_hour.upto(1439) do |minute|
+          start_minute.upto(end_minute) do |minute|
             if minute%minute_interval == 0
               ampm = minute < 720 ? ' AM' : ' PM'
               hour = minute/60
