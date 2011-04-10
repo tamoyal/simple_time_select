@@ -1,2 +1,5 @@
 == 0.2a / 2009-06-07
 Added start_hour and end_hour options
+
+== 0.3 / 2011-04-09
+Applied fix as described at https://github.com/tamoyal/simple_time_select/issues/2 to make compatible with rails 2.3.8 and 3.0.6
