@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.summary = "Showcase times in a single drop-down with AM and PM, as well as selectable intervals."
   s.homepage = "http://www.tonyamoyal.com"
   s.require_paths = ["lib"]
+  s.files = ["lib/simple_time_select.rb"]
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
